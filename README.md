@@ -1,72 +1,74 @@
 <<<<<<< HEAD
 # Crewmeister Challenge
 
-## Background
+# DevOps Coding Challenge – Spring Boot + MySQL Deployment
 
-At Crewmeister, our development team is continuously growing. We aim to hire the best educated, motivated, and enthusiastic people in the field who have fun building up Crewmeister in our vision to empower small businesses to thrive in a digital world. For this quest, we are continuously getting new applicants from all over the world. To filter which candidates could be a good fit, we provide our candidates with a coding challenge that we manually review and evaluate.
+This project is a completed solution for the Crewmeister DevOps Coding Challenge. It includes a Spring Boot REST API that calculates workdays for a given month and is deployed locally using Docker Compose and Kubernetes.
 
 ---
 
-## DevOps Engineer Task
+## 📦 Technologies Used
 
-As a DevOps Engineer at Crewmeister, you will be in charge of several challenging tasks in your daily work. One of your core responsibilities will be to ensure that the system is always running smoothly and that the application is deployed successfully to our customers.
+- **Java 17** + **Spring Boot**
+- **MySQL 8**
+- **Flyway** for database migrations
+- **Docker** and **Docker Compose**
+- **Kubernetes (Kind)** for container orchestration
+- **kubectl** for local cluster management
 
-In this challenge, you should use DevOps best practices to architect and implement the complete cycle of building, packaging, and deploying a Java application (specified later in this document). 
+---
 
-The following are core technologies/tools that should be present in the solution:
+## 🚀 Features Implemented
 
-- Dockerfile
-- Helm Chart
-- Terraform to interact with the Kubernetes cluster
+✅ Exposed REST API:
 
-You have the flexibility to utilize any cloud provider of your choice to deploy and run the application effectively. Additionally, it should be designed to operate seamlessly on local machines, allowing for a versatile setup that caters to various operational preferences and environments.
+```http
+GET /api/work-days?month=1
+Returns a list of workdays for the given month.
 
-## Plus:
+✅ Connected Spring Boot to MySQL with full persistence.
+✅ Flyway integration to handle schema migration.
+✅ Multi-stage Docker build for Java application.
+✅ Docker Compose file to bring up app + MySQL in a single command.
+✅ Kubernetes deployment and service manifests (k8s/) for local cluster deployment using Kind.
+✅ Configured Spring Boot to run on port 8081 to avoid port conflict with Jenkins.
+✅ Successful port-forwarding to test Kubernetes deployment locally.
 
-- Create a CI Pipeline in Github to automate the application lifecycle
+🐳 Run with Docker Compose
 
-- Add monitoring tools to check the health of the application
+docker-compose up --build
+Test the API:
 
-## Important Points:
 
-- At Crewmeister, we value creativity and pushing for better. You are encouraged to expand the solution as you find fit. To do so, you must ensure high-quality documentation and that the base solution is correctly executed.
-- All the tools used must be publicly accessible or explicitly documented on how to authenticate.
-- All the tools must be free to use.
+curl http://localhost:9090/api/work-days?month=1
+☸️ Run with Kubernetes Locally (Kind)
+1. Create Kind Cluster
 
- ## Submission:
-- Provide the link to your GitHub repository in the Greenhouse submission form.
-- Submit your completed project via the Greenhouse link in the email received from the Recruitment Manager.
+kind create cluster --name kind-kind
+2. Build and Load Image
 
-## Challenge Application
+docker build -t devops-coding-challenge-app:latest .
+kind load docker-image devops-coding-challenge-app:latest --name kind-kind
+3. Deploy to Kubernetes
 
-A Spring Boot application that provides a simple user management REST API.
+kubectl apply -f k8s/
+4. Access the App
 
-### Technologies Used
+kubectl port-forward service/devops-app-service 8081:8081
+Then visit:
 
-- Java 17
-- Spring Boot 3.3.5
-- MySQL Database
-- Flyway Migration
-- Maven
-- Spring Data JPA
-- Spring Actuator
+http://localhost:8081/api/work-days?month=1
 
-### Pre-requisites
-
-- JDK 17
-- MySQL
-- Maven
-
-### API Endpoints
-
-#### GET /user
-
-Retrieves a user by ID
-
-#### POST /user
-
-Creates a new user
-
-=======
-# devops-coding-challenge-project
->>>>>>> a9371b427df844791ba75458f48089c3643fed52
+📁 Folder Structure
+.
+├── Dockerfile
+├── docker-compose.yml
+├── k8s/
+│   ├── app-deployment.yaml
+│   ├── app-service.yaml
+│   ├── mysql-deployment.yaml
+│   ├── mysql-service.yaml
+│   └── config-map.yaml
+└── src/
+    └── main/
+        └── ...
