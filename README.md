@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Crewmeister Challenge
 
 ## Background
@@ -66,3 +67,6 @@ Retrieves a user by ID
 
 Creates a new user
 
+=======
+# devops-coding-challenge-project
+>>>>>>> a9371b427df844791ba75458f48089c3643fed52

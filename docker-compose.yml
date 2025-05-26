@@ -1,0 +1,34 @@
+version: "3.8"
+
+services:
+  mysql:
+    image: mysql:8
+    container_name: dev-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: challenge
+    ports:
+      - "3306:3306"
+    networks:
+      - backend
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: devops-app
+    ports:
+      - "9090:8080"
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/challenge?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_WRITER_URL: jdbc:mysql://mysql:3306/challenge?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: password
+    networks:
+      - backend
+
+networks:
+  backend: {}
+
