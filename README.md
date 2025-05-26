@@ -1,7 +1,6 @@
-<<<<<<< HEAD
 # Crewmeister Challenge
 
-# DevOps Coding Challenge – Spring Boot + MySQL Deployment
+## DevOps Coding Challenge – Spring Boot + MySQL Deployment
 
 This project is a completed solution for the Crewmeister DevOps Coding Challenge. It includes a Spring Boot REST API that calculates workdays for a given month and is deployed locally using Docker Compose and Kubernetes.
 
@@ -20,29 +19,22 @@ This project is a completed solution for the Crewmeister DevOps Coding Challenge
 
 ## 🚀 Features Implemented
 
-✅ Exposed REST API:
+✅ **Exposed REST API**:
 
-```http
-GET /api/work-days?month=1
-Returns a list of workdays for the given month.
 
-✅ Connected Spring Boot to MySQL with full persistence.
-✅ Flyway integration to handle schema migration.
-✅ Multi-stage Docker build for Java application.
-✅ Docker Compose file to bring up app + MySQL in a single command.
-✅ Kubernetes deployment and service manifests (k8s/) for local cluster deployment using Kind.
-✅ Configured Spring Boot to run on port 8081 to avoid port conflict with Jenkins.
-✅ Successful port-forwarding to test Kubernetes deployment locally.
+✅ Connected Spring Boot to MySQL with full persistence  
+✅ Flyway integration to handle schema migration  
+✅ Multi-stage Docker build for Java application  
+✅ Docker Compose file to bring up app + MySQL in a single command  
+✅ Kubernetes deployment and service manifests (`k8s/`) for local cluster deployment using Kind  
+✅ Configured Spring Boot to run on port 8081 to avoid port conflict with Jenkins  
+✅ Successful port-forwarding to test Kubernetes deployment locally  
 
-🐳 Run with Docker Compose
+---
 
+```bash
 docker-compose up --build
-Test the API:
-
-
 curl http://localhost:9090/api/work-days?month=1
-☸️ Run with Kubernetes Locally (Kind)
-1. Create Kind Cluster
 
 kind create cluster --name kind-kind
 2. Build and Load Image
@@ -58,7 +50,6 @@ kubectl port-forward service/devops-app-service 8081:8081
 Then visit:
 
 http://localhost:8081/api/work-days?month=1
-
 📁 Folder Structure
 .
 ├── Dockerfile
